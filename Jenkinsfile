@@ -12,8 +12,8 @@ podTemplate(containers: [
             container('docker-test') {
                 stage('Shell Execution') {
                     sh '''
-                    docker --version
-                    '''
+                    git "https://github.com/arieluchka/aks-cluster-project-app"
+                    '''; ls
                 }
             }
         }
