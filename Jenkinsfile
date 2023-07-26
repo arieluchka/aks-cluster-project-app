@@ -12,7 +12,7 @@ podTemplate(containers: [
             container('docker-test') {
                 stage('Shell Execution') {
                     sh "docker --version"
-		    sh "sudo dockerd"
+		    sh "dockerd"
 		    echo 'Starting to build docker image'
                     sh "docker build -t test-of-build ."
                 }
