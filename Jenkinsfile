@@ -1,7 +1,7 @@
 podTemplate(containers: [
     containerTemplate(
         name: 'docker-test', 
-        image: 'docker/docker:latest'
+        image: 'docker:latest'
         )
   ]) {
 
