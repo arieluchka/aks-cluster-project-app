@@ -5,9 +5,9 @@ podTemplate(containers: [
         )
   ]) {
 
-    node(POD_LABEL) {
+    node(docker) {
         stage('Get docker version') {
-            container('docker') {
+            container('docker-test') {
                 stage('Shell Execution') {
                     sh '''
                     echo "Hello! I am executing shell"
