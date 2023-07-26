@@ -1,5 +1,5 @@
 podTemplate {
-    node(POD_LABEL) {
+    node(docker) {
         stage('Run shell') {
             sh 'echo hello world'
         }
