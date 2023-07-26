@@ -12,7 +12,7 @@ podTemplate(containers: [
             container('docker-test') {
                 stage('Shell Execution') {
                     sh '''
-                    docker --version"
+                    docker --version
                     '''
                 }
             }
