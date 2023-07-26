@@ -3,7 +3,8 @@ podTemplate(containers: [
         name: 'docker-test', 
         image: 'docker:dind',
 	command: 'sleep',
-	args: '999999'
+	args: '999999',
+        securityContext: [privileged: true]
         )
   ]) {
 
