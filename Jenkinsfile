@@ -11,9 +11,7 @@ podTemplate(containers: [
         stage('Get docker version') {
             container('docker-test') {
                 stage('Shell Execution') {
-                    sh '''
-                    ls
-                    '''
+                    sh "ls"
                 }
             }
         }
