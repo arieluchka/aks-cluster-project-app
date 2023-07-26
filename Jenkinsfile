@@ -7,7 +7,7 @@ podTemplate(containers: [
         )
   ]) {
 
-    node(POD_LABEL) {
+    node(docker) {
         stage('Get docker version') {
             container('docker-test') {
                 stage('Shell Execution') {
