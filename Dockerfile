@@ -1,6 +1,3 @@
 FROM python:3.9
-WORKDIR /app
-COPY main.py .
-# copy /webcode ./webcode
-CMD ["python", "./main.py"]
+RUN echo 'hello world' > test1.txt
 EXPOSE 8080

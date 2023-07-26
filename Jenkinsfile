@@ -11,7 +11,9 @@ podTemplate(containers: [
         stage('Get docker version') {
             container('docker-test') {
                 stage('Shell Execution') {
-                    ls
+                    sh "docker --version"
+		    echo 'Starting to build docker image'
+                    sh "docker build -t test-of-build ."
                 }
             }
         }
