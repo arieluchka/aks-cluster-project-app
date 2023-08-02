@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-        label 'promo-app'
+        label 'docker-image-build'
         idleMinutes 5
         yamlFile 'build-pod.yaml'
         defaultContainer 'dind'
