@@ -18,17 +18,17 @@ pipeline {
                 sh "docker build -t arieluchka/aks-app-jenkins-test:0.1 ."
             }
         }
-        stage('login to dockerhub')
+        stage('login to dockerhub') {
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-
         stage('push') {
             steps{
                 sh 'docker push arieluchka/aks-app-jenkins-test:0.1'
             }
         }
+    }
     post {
         always {
             sh 'docker logout'
