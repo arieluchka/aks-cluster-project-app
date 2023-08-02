@@ -29,7 +29,6 @@ pipeline {
                 sh 'docker push arieluchka/aks-app-jenkins-test:0.1'
             }
         }
-    }
     post {
         always {
             sh 'docker logout'
