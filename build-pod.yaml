@@ -7,3 +7,5 @@ spec:
   - name: dind
     image: docker:23.0.6-dind
     imagePullPolicy: Always
+    securityContext:
+      privileged: true
