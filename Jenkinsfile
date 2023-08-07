@@ -15,7 +15,7 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'Starting to build docker image'
-                sh "docker build -t arieluchka/aks-app-jenkins-test:0.4 ."
+                sh "docker build -t arieluchka/aks-app-jenkins-test:0.6 ."
             }
         }
         stage('login to dockerhub') {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('push') {
             steps{
-                sh 'docker push arieluchka/aks-app-jenkins-test:0.4'
+                sh 'docker push arieluchka/aks-app-jenkins-test:0.6'
             }
         }
     }
