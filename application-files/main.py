@@ -17,7 +17,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
 port = 8080
 
-with HTTPServer((os.environ['PUBLICIP'], port), MyHandler) as httpd:
+with HTTPServer(('', port), MyHandler) as httpd:
     print("Server started at localhost:" + str(port))
     httpd.serve_forever()
 

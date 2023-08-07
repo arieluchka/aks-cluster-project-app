@@ -1,4 +1,5 @@
-FROM alpine:3.13.5
-WORKDIR /app/
-COPY /testintodockerfile.txt .
+FROM python:3.9
+WORKDIR /app
+COPY /application-files/ .
+CMD ["python", "./main.py"]
 EXPOSE 8080
