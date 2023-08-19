@@ -9,7 +9,7 @@ pipeline {
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        commitMsg = commit.substring( commit.indexOf(' ') ).trim()
+        // commitMsg = commit.substring( commit.indexOf(' ') ).trim()
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Starting to build docker image'
                 echo '$commitMsg'
-                sh "docker build -t arieluchka/aks-app-jenkins-test:0.6 ."
+                sh "docker build -t arieluchka/aks-app-jenkins-test:test ."
             }
         }
         stage('login to dockerhub') {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('push') {
             steps{
-                sh 'docker push arieluchka/aks-app-jenkins-test:0.6'
+                sh 'docker push arieluchka/aks-app-jenkins-test:test'
             }
         }
     }
