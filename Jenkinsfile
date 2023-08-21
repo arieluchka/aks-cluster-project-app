@@ -16,22 +16,23 @@ pipeline {
     }
 
     stages {
-        // stage('setup image tag') {
-        //     agent {
-        //         kubernetes {
-        //         label 'git-tag-build'
-        //         idleMinutes 5
-        //         yamlFile 'git-pod.yaml'
-        //         defaultContainer 'git-tags'
-        //         }
-        //     }
-        //     steps{
-        //         script {
-        //             TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
-        //             IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
-        //         }
-        //     }
-        // }
+        stage('setup image tag') {
+            agent {
+                kubernetes {
+                label 'git-tag-build'
+                idleMinutes 5
+                yamlFile 'git-pod.yaml'
+                defaultContainer 'git-tags'
+                }
+            }
+            steps{
+                script {
+                    sh "git clone ${GIT_URL} ."
+                    TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
+                    IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
+                }
+            }
+        }
 
 
 
