@@ -9,14 +9,14 @@ pipeline {
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        // commitMsg = commit.substring( commit.indexOf(' ') ).trim()
+        VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
     }
 
     stages {
         stage('Build image') {
             steps {
                 echo 'Starting to build docker image'
-                echo '$commitMsg'
+                echo "${env.VERSION} test"                
                 sh "docker build -t arieluchka/aks-app-jenkins-test:test ."
             }
         }
