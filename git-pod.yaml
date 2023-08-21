@@ -7,7 +7,7 @@ spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
   - name: git-tags
     image: alpine/git:latest
-    # command: ["sleep 120"]
+    command: ["sh", "-c", "while true; do sleep 3600; done"]
     imagePullPolicy: Always
     securityContext:
       privileged: true
