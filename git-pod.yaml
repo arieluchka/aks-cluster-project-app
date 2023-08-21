@@ -11,8 +11,7 @@ spec:
       - "sh"
       - "-c"
       - |
-        git clone $GIT_URL . 
-        ls
+        sleep 30
     imagePullPolicy: Always
     securityContext:
       privileged: true
