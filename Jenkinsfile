@@ -9,6 +9,7 @@ pipeline {
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        IMAGE_VERSION = "${env.BUILD_ID}"
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
     }
 
@@ -17,7 +18,7 @@ pipeline {
             steps {
                 echo 'Starting to build docker image'
                 echo "${env.VERSION} test"                
-                sh "docker build -t arieluchka/aks-app-jenkins-test:test ."
+                sh "docker build -t $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:0.${IMAGE_VERSION}.0 ."
             }
         }
         stage('login to dockerhub') {
@@ -27,7 +28,7 @@ pipeline {
         }
         stage('push') {
             steps{
-                sh 'docker push arieluchka/aks-app-jenkins-test:test'
+                sh "docker push $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:0.${IMAGE_VERSION}.0"
             }
         }
     }
