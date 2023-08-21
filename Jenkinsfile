@@ -7,6 +7,7 @@ pipeline {
         defaultContainer 'dind'
         }
     }
+    options { skipDefaultCheckout() }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_VERSION = ""
@@ -39,6 +40,7 @@ pipeline {
 
         stage('Build image') {
             steps {
+                checkout scm
                 echo 'Starting to build docker image'
                 echo "${env.VERSION} test"  
                 echo "${GIT_URL}"              
