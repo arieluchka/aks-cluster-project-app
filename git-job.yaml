@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name: git-tag-build
+  namespace: ci
+spec:
+  completions: 1
+  template:
+    metadata:
+      name: git-tag-pod
+    spec:
+      containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
+      - name: git-tags
+        image: alpine/git:latest
+        command:
+          - "sh"
+          - "-c"
+          - |
+            sleep 30
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+  backoffLimit: 0
+
