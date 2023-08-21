@@ -9,16 +9,29 @@ pipeline {
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_VERSION = "${env.BUILD_ID}"
+        IMAGE_VERSION = ""
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
+        TAGNAME = "main_release"
+        TAGDESCRIPTION = ""
     }
 
     stages {
+        stage('setup image tag') {
+            steps{
+                script {
+                    TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
+                    IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
+                }
+            }
+        }
+
+
+
         stage('Build image') {
             steps {
                 echo 'Starting to build docker image'
                 echo "${env.VERSION} test"                
-                sh "docker build -t $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:0.${IMAGE_VERSION}.0 ."
+                sh "docker build -t $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:${IMAGE_VERSION} ."
             }
         }
         stage('login to dockerhub') {
@@ -28,7 +41,7 @@ pipeline {
         }
         stage('push') {
             steps{
-                sh "docker push $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:0.${IMAGE_VERSION}.0"
+                sh "docker push $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:${IMAGE_VERSION}"
             }
         }
     }
