@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: git-tag-build
+  namespace: ci
+spec:
+  containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
+  - name: git-tags
+    image: bitnami/git:latest
+    imagePullPolicy: Always
+    securityContext:
+      privileged: true
