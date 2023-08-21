@@ -29,6 +29,7 @@ pipeline {
             options { skipDefaultCheckout() }
             steps{
                 script {
+                    sh "ls"
                     sh "git clone ${GIT_URL} .; ls"
                     // TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     // IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
