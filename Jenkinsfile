@@ -7,7 +7,7 @@ pipeline {
         defaultContainer 'dind'
         }
     }
-    options { skipDefaultCheckout() }
+    // options { skipDefaultCheckout() }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_VERSION = ""
@@ -26,10 +26,10 @@ pipeline {
             //     defaultContainer 'git-tags'
             //     }
             // }
-            options { skipDefaultCheckout() }
+            // options { skipDefaultCheckout() }
             steps{
                 script {
-                    echo "test"
+                    echo "${GIT_URL}"
                     sh "ls; pwd; git --version"
                     sh "git clone ${GIT_URL} .; ls"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
