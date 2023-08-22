@@ -43,6 +43,8 @@ pipeline {
                     dir('test'){
                         sh "git clone ${GIT_URL} .; ls"
                     }
+                    sh "pwd"
+                    
                     // sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
                     sh "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}"
                     // echo "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}"
