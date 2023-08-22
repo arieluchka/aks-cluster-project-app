@@ -38,13 +38,14 @@ pipeline {
             steps{
                 script {
                     echo "${GIT_URL}"
-                    sh "mkdir -p tagpull"
-                    dir('tagpull'){
-                        sh "git clone ${GIT_URL} ."
-                        sh "pwd"
-                        TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
-                    }
+                    // sh "mkdir -p tagpull"
+                    // dir('tagpull'){
+                        // sh "git clone ${GIT_URL} ."
+                        // sh "pwd"
+                        // TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
+                    // }
                     sh "pwd"
+                    TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
                     echo "${IMAGE_VERSION}"
                     // sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
