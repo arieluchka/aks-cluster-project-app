@@ -38,16 +38,8 @@ pipeline {
             // options { skipDefaultCheckout() }
             steps{
                 script {
-                    echo "${GIT_URL}"
-                    // sh "mkdir -p tagpull"
-                    // dir('tagpull'){
-                        // sh "git clone ${GIT_URL} ."
-                        // sh "pwd"
-                        // TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
-                    // }
-                    sh "pwd"
-                    PWD = sh(script: "pwd", returnStdout: true)
-                	sh "git config --global --add safe.directory ${PWD}"
+                    // PWD = sh(script: "pwd", returnStdout: true)
+                	sh "git config --global --add safe.directory ${sh(script: "pwd", returnStdout: true)}"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
                     echo "${IMAGE_VERSION}"
