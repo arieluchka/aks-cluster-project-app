@@ -14,7 +14,7 @@ pipeline {
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         TAGNAME = "main_release"
         TAGDESCRIPTION = ""
-        GIT_URL_TEST = "${GIT_URL}"
+        GIT_URL_TEST = "${REPO_URL}"
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
             // options { skipDefaultCheckout() }
             steps{
                 script {
-                    echo "${env.REPO_URL}"
+                    echo "${REPO_URL}"
                     sh "ls; pwd; git --version"
                     // sh "git clone ${GIT_URL} .; ls"
                     sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
