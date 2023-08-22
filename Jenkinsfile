@@ -7,7 +7,7 @@ pipeline {
         defaultContainer 'dind'
         }
     }
-    // options { skipDefaultCheckout() }
+    options { skipDefaultCheckout() }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_VERSION = ""
@@ -27,7 +27,7 @@ pipeline {
             //     defaultContainer 'git-tags'
             //     }
             // }
-            options { skipDefaultCheckout() }
+            // options { skipDefaultCheckout() }
             steps{
                 script {
                     echo "${GIT_URL}"
