@@ -10,7 +10,7 @@ pipeline {
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_VERSION = ""
-        TAGNAME = "main_release" //change later to the branch name and then name the tags like "<branch>-release"
+        TAGNAME = "side_release" //change later to the branch name and then name the tags like "<branch>-release"
         TAGDESCRIPTION = ""
     }
 
@@ -20,7 +20,7 @@ pipeline {
                 script {
                 	sh "git config --global --add safe.directory ${sh(script: "pwd", returnStdout: true)}"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
-                    IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
+                    IMAGE_VERSION = "1.0.${TAGDESCRIPTION}"
                 }
             }
         }
