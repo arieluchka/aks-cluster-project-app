@@ -38,7 +38,7 @@ pipeline {
             steps{
                 script {
                     echo "${GIT_URL}"
-                    sh "cd ..; mkdir test; cd test/"
+                    sh "cd ..; mkdir test; cd test/; pwd"
                     sh "git clone ${GIT_URL} .; ls"
                     // sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
                     sh "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}"
