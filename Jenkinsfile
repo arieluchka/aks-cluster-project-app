@@ -15,6 +15,7 @@ pipeline {
         TAGNAME = "main_release"
         TAGDESCRIPTION = ""
         GIT_URL_TEST = "${REPO_URL}"
+        PWD = ""
     }
 
     stages {
@@ -45,6 +46,8 @@ pipeline {
                         // TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     // }
                     sh "pwd"
+                    PWD = sh(script: "pwd", returnStdout: true)
+                	sh "git config --global --add safe.directory ${PWD}"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
                     echo "${IMAGE_VERSION}"
