@@ -7,7 +7,7 @@ pipeline {
         defaultContainer 'dind'
         }
     }
-    options { skipDefaultCheckout() }
+    // options { skipDefaultCheckout() }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMAGE_VERSION = ""
