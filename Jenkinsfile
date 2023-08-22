@@ -32,6 +32,7 @@ pipeline {
                     echo "${GIT_URL}"
                     sh "ls; pwd; git --version"
                     // sh "git clone ${GIT_URL} .; ls"
+                    sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
                     IMAGE_VERSION = "${TAGDESCRIPTION}.0.0"
                 }
