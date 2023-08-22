@@ -27,8 +27,6 @@ pipeline {
         stage('Build image') {
             steps {
                 echo 'Starting to build docker image'
-                echo "${env.VERSION} test"  
-                echo "${GIT_URL}"              
                 sh "docker build -t $DOCKERHUB_CREDENTIALS_USR/aks-app-jenkins-test:${IMAGE_VERSION} ."
             }
         }
