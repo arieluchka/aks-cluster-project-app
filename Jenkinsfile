@@ -18,6 +18,13 @@ pipeline {
     }
 
     stages {
+        // stage('Checkout') {
+        //     steps {
+        //         script{
+        //             def repoUrl = env.
+        //         }
+        //     }
+        // }
         stage('setup image tag') {
             // agent {
             //     kubernetes {
@@ -30,7 +37,7 @@ pipeline {
             // options { skipDefaultCheckout() }
             steps{
                 script {
-                    echo "${GIT_URL}"
+                    echo "${env.REPO_URL}"
                     sh "ls; pwd; git --version"
                     // sh "git clone ${GIT_URL} .; ls"
                     sh "git config --global --add safe.directory /home/jenkins/agent/workspace/aks-pipeline_main"
