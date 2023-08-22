@@ -14,6 +14,7 @@ pipeline {
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         TAGNAME = "main_release"
         TAGDESCRIPTION = ""
+        GIT_URL_TEST = "${GIT_URL}"
     }
 
     stages {
@@ -26,7 +27,7 @@ pipeline {
             //     defaultContainer 'git-tags'
             //     }
             // }
-            // options { skipDefaultCheckout() }
+            options { skipDefaultCheckout() }
             steps{
                 script {
                     echo "${GIT_URL}"
