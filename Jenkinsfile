@@ -20,7 +20,7 @@ pipeline {
                 script {
                 	sh "git config --global --add safe.directory ${sh(script: "pwd", returnStdout: true)}"
                     TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()
-                    IMAGE_VERSION = "${TAGDESCRIPTION}-staging"
+                    IMAGE_VERSION = "${TAGDESCRIPTION}-dev"
                 }
             }
         }
