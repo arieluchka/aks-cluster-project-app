@@ -1,4 +1,4 @@
-pipeline { //merge testing
+pipeline { //merge testing 2
     agent {
         kubernetes {
         label 'docker-image-build'
