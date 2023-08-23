@@ -9,7 +9,6 @@ pipeline {
     }
     environment{
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_VERSION = ""
         TAGNAME = "production-version" //change later to the branch name and then name the tags like "<branch>-release"
         IMAGE_VERSION = ""
     }
