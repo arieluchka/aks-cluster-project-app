@@ -1,25 +1,41 @@
 import os
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from typing import List
+from uuid import uuid4
 
-class MyHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        if self.path == '/':
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            with open('webcode/webcode.html', 'rb') as file:
-                self.wfile.write(file.read())
-        else:
-            self.send_response(404)
-            self.send_header('Content-type', 'text/plain')
-            self.end_headers()
-            self.wfile.write(b'File not found')
+from fastapi import FastAPI
+import uvicorn
 
-port = 8080
+from models import User, Gender, Role
 
-with HTTPServer(('', port), MyHandler) as httpd:
-    print("Server started at localhost:" + str(port))
-    httpd.serve_forever()
+db: List[User] = [
+    User(
+        id=uuid4(),
+        first_name="ariel",
+        last_name="agranovich",
+        # middle_name="borisovich",
+        gender=Gender.male,
+        roles=[Role.admin]
+    ),
+     User(
+         id=uuid4(),
+         first_name="deez",
+         last_name="nuts",
+         # middle_name="borisovich",
+         gender=Gender.male,
+         roles=[Role.admin]
+     )
+]
+app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"hello": "banana"}
 
+@app.get("/api/v1/users")
+async def fetch_users():
+    return db
 
+@app.post("/api/v1/users")
+async def register_user(user: User):
+    db.append(user)
+    return {"id": user.id}
