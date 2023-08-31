@@ -4,7 +4,7 @@ pipeline {
         label 'docker-image-build'
         idleMinutes 5
         yamlFile 'build-pod.yaml'
-        defaultContainer 'dind'
+        defaultContainer 'docker-with-git'
         }
     }
     environment{
