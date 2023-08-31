@@ -5,8 +5,8 @@ metadata:
   namespace: ci
 spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
-  - name: dind
-    image: docker:dind
+  - name: docker-with-git
+    image: docker:git
     imagePullPolicy: Always
     securityContext:
       privileged: true
