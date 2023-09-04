@@ -4,8 +4,11 @@ import os
 DB_IP = '40.118.48.151'
 
 try:
-    connection = psycopg2.connect(host=os.getenv("DB_IP") if os.getenv("DB_IP") != None else DB_IP, port="5432",
-                                  database='Users', user='postgres', password='test123')
+    connection = psycopg2.connect(host=os.getenv("DB_IP") if os.getenv("DB_IP") != None else DB_IP,
+                                  port="5432",
+                                  database=os.getenv("DB_NAME") if os.getenv("DB_NAME") != None else "users",
+                                  user='postgres',
+                                  password='test123')
 except:
     print("I am unable to connect to the database")
 
