@@ -1,1 +1,2 @@
- */application-files/.idea/*
+*/application-files/.idea/*
+*/__pycache__/*
