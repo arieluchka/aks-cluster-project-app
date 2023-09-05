@@ -38,9 +38,15 @@ async def fetch_users():
     return db
 
 
+#register user with firstandlast name, username, password(transform password into hash?), date of birth(?). auto create id, date of account creation(check if possible to see entry date in sql database)
 @app.post(f"/api/v1{prefixed_path}users")
 async def register_user(user: User):
     db.append(user)
     return {"id": user.id}
+
+#check if user in database
+@app.get(f"/api/v1{prefixed_path}login")
+async def user_login():
+    pass
 
 

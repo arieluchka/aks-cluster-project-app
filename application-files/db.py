@@ -1,14 +1,15 @@
 import psycopg2
 import os
+from easeoflife import os_or_default
 
-DB_IP = '40.118.48.151'
+
 
 try:
-    connection = psycopg2.connect(host=os.getenv("DB_IP") if os.getenv("DB_IP") != None else DB_IP,
-                                  port="5432",
-                                  database=os.getenv("DB_NAME") if os.getenv("DB_NAME") != None else "users",
-                                  user='postgres',
-                                  password='test123')
+    connection = psycopg2.connect(host=os_or_default("DB_IP", '20.160.194.133'),
+                                  port=os_or_default("DB_PORT", "5432"),
+                                  database=os_or_default("DB_NAME", "aks_project_db"),
+                                  user=os_or_default("DB_USER", 'python'),
+                                  password=os_or_default("DB_PASSWORD", 'pythonTEST123_'))
 except:
     print("I am unable to connect to the database")
 
@@ -18,7 +19,7 @@ except:
 # connection = psycopg2.connect(host=os.getenv("DB_IP") if os.getenv("DB_IP") != None else DB_IP, port="5432", database='test_erp', user='postgres', password='deeznuts12345_')
 
 cursor = connection.cursor()
-cursor.execute("""SELECT * FROM user_info2 WHERE id=1""")
+cursor.execute("""SELECT * FROM """)
 
 print(cursor)
 for query in cursor:
