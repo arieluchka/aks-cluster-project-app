@@ -43,15 +43,15 @@ Dev and feature branches will tag the image as `{image-version}-{branch-name}`
 
 In example: `1.0.1-dev or 1.0.1-staging`
 
-The image will be pushed to dockerhub, where later it will be deployed through [**ArgoCD**](https://github.com/arieluchka/aks-cluster-project-deployment/tree/main) in the matching namespace. 
+The image will be pushed to dockerhub, where later it will be deployed to the cluster through [**ArgoCD**](https://github.com/arieluchka/aks-cluster-project-deployment/tree/main) in the matching namespace. 
 
 
+### [Back to the Project hub](https://github.com/arieluchka/DevOps-Portfolio#k8s-development-and-production-space)
 
 
-
-<!-- > [!NOTE]
+> [!NOTE]
 > The project is still under development and the readme files are still under construction. Feel free to contact me on 
 [LinkedIn](https://www.linkedin.com/in/ariel-agranovich-990629264 "my linkedin porfile :)")
- for any question :)  -->
+ for any question :) 
 
 
