@@ -25,28 +25,33 @@ Some of the request will require sending queries to a Database (PostgreSQL), whi
 
 The app will be deployed in a K8S cluster, For that it needs to be packaged as an image using a [**Dockerfile**](https://github.com/arieluchka/aks-cluster-project-app/blob/dev/Dockerfile). The Dockerfile is currently based on a lightweight alpine image, where the app dependencies (such as python and some libraries) are installed using a [**dependencies script**](https://github.com/arieluchka/aks-cluster-project-app/blob/dev/dependencies.txt).
 
-The image itself is built and pushed through a Jenkins Pipeline and tagged based on this GitHub repo tag.
+The image itself is built and pushed through a Jenkins Pipeline and tagged based on this GitHubs repo tag.
 
 
 ### Jenkins Pipeline 
 > planned to be switched in the future to Azure DevOps.
 
+The image construction is handled by a Jenkins Server running on the cluster itself (deployed with a custom helm configuration). 
 
-⚡️ [Jenkins](https://github.com/arieluchka/aks-cluster-project-app/tree/feature) 
-CI pipelines for building, testing and pushing Docker Images with tag tracking.
+Each branch in this repository is equiped with a [**Jenkinsfile**](https://github.com/arieluchka/aks-cluster-project-app/blob/dev/Jenkinsfile) which spins up a container with [docker daemon](https://hub.docker.com/_/docker) on the cluster using the [**build-pod.yaml**](https://github.com/arieluchka/aks-cluster-project-app/blob/dev/build-pod.yaml).
 
-⚡️ [ArgoCD](https://github.com/arieluchka/aks-cluster-project-deployment) 
-configuration for creating and maintaining the Dev, Staging and Production environments.
+The repo is pulled into the container and the image is built. The tag that is used to create the image is based on the GitHubs tag. it is extracted using this command:
 
-⚡️ Prometheus and Grafana.
+`TAGDESCRIPTION = sh(script: "git tag -l -n99 --format='%(contents)' ${env.TAGNAME}", returnStdout: true).trim()`
 
-⚡️ Ingress Controller.
+Dev and feature branches will tag the image as `{image-version}-{branch-name}`
+
+In example: `1.0.1-dev or 1.0.1-staging`
+
+The image will be pushed to dockerhub, where later it will be deployed through [**ArgoCD**](https://github.com/arieluchka/aks-cluster-project-deployment/tree/main) in the matching namespace. 
 
 
 
-> [!NOTE]
+
+
+<!-- > [!NOTE]
 > The project is still under development and the readme files are still under construction. Feel free to contact me on 
 [LinkedIn](https://www.linkedin.com/in/ariel-agranovich-990629264 "my linkedin porfile :)")
- for any question :) 
+ for any question :)  -->
 
 
