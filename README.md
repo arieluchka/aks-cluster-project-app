@@ -1,6 +1,6 @@
 # This Repo Is Part of My [DevOps Project](https://github.com/arieluchka/DevOps-Portfolio#k8s-development-and-production-space)
 
-> [!IMPORTANT]
+<!-- > [!IMPORTANT] -->
 > No AI tool was used during the work on these Porjects.
 
 ## Python application, pipelines and image building
