@@ -1,11 +1,21 @@
 # This Repo Is Part of My [DevOps Project](https://github.com/arieluchka/DevOps-Portfolio#k8s-development-and-production-space)
 
-
+> [!IMPORTANT]
+> No AI tool was used during the work on these Porjects.
 
 ## Python application, pipelines and image building
+### Introduction 
+This repo contains 3 important Branches (main, feature and dev).
+
+MAIN will have the latest version of the production app. currently a static http server for display (soon will move to a front-end back-end configuration using FastAPI and psycopg2).
+
+FEATURE (or STAGING) will have a stable version of the app with new features.
+
+DEV will have new features under development.
+
+
 ### Features
-⚡️ [Terraform 
-code](https://github.com/arieluchka/aks-cluster-project/tree/main/terraform%20file%20for%20cluster%20creation)
+⚡️ [Python app](https://github.com/arieluchka/aks-cluster-project/tree/main/terraform%20file%20for%20cluster%20creation)
 that builds a k8s cluster on Azure with autoscaling (to save costs while working on the project).
 
 ⚡️ [Helm charts](https://github.com/arieluchka/aks-cluster-project/tree/main/helm-charts)
